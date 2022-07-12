@@ -3,17 +3,12 @@ import Options from "./components/Options";
 import Timer from "./components/Timer";
 
 function App() {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
+  const [workTime, setWorkTime] = useState(25);
+  const [breakTime, setBreakTime] = useState(5);
 
   return (
     <div className="App">
-      <Timer
-        minutes={minutes}
-        setMinutes={setMinutes}
-        seconds={seconds}
-        setSeconds={setSeconds}
-      ></Timer>
+      <Timer workTime={workTime} breakTime={breakTime}></Timer>
       <Options></Options>
     </div>
   );

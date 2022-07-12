@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import ControlButton from "./ControlButton";
 
-const Timer = ({ minutes, setMinutes, seconds, setSeconds }) => {
-  const [breakTime, setBreakTime] = useState(false);
+const Timer = ({ workTime, breakTime }) => {
+  const [minutes, setMinutes] = useState(workTime);
+  const [seconds, setSeconds] = useState(0);
+  const [work, setWork] = useState(true);
   const [paused, setPaused] = useState(true);
 
   useEffect(() => {
@@ -13,13 +15,12 @@ const Timer = ({ minutes, setMinutes, seconds, setSeconds }) => {
             setSeconds(59);
             setMinutes(minutes - 1);
           } else {
-            if (breakTime) {
-              setBreakTime(false);
-              setMinutes(5);
+            if (work) {
+              setMinutes(breakTime);
             } else {
-              setBreakTime(true);
-              setMinutes(25);
+              setMinutes(workTime);
             }
+            setWork(!work);
           }
         } else {
           setSeconds(seconds - 1);
@@ -28,15 +29,24 @@ const Timer = ({ minutes, setMinutes, seconds, setSeconds }) => {
 
       return () => clearInterval(interval);
     }
-  }, [breakTime, minutes, paused, seconds, setMinutes, setSeconds]);
+  }, [
+    work,
+    minutes,
+    paused,
+    seconds,
+    setMinutes,
+    setSeconds,
+    breakTime,
+    workTime,
+  ]);
 
   return (
     <div className="Timer">
-      <h1 id="status">{paused ? "paused" : breakTime ? "break" : "work"}</h1>
+      <h1 id="status">{paused ? "paused" : work ? "work" : "break"}</h1>
       <div id="countdown">
-        <p id="minutes">{minutes}</p>
+        <p id="minutes">{minutes === 0 ? "00" : minutes}</p>
         <p id="colon">:</p>
-        <p id="seconds">{seconds}</p>
+        <p id="seconds">{seconds === 0 ? "00" : seconds}</p>
       </div>
       <div id="controls">
         <ControlButton
@@ -46,9 +56,9 @@ const Timer = ({ minutes, setMinutes, seconds, setSeconds }) => {
         <ControlButton
           text="reset"
           action={() => {
-            setBreakTime(false);
+            setWork(true);
             setPaused(true);
-            setMinutes(25);
+            setMinutes(workTime);
             setSeconds(0);
           }}
         ></ControlButton>
