@@ -44,7 +44,8 @@ const Timer = ({ workTime, breakTime }) => {
   return (
     <div className="Timer">
       <h1 className="countdown">
-        {minutes === 0 ? "00" : minutes}:{seconds === 0 ? "00" : seconds}
+        {minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:
+        {seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds}
       </h1>
       <h2 className="status">{paused ? "paused" : work ? "work" : "break"}</h2>
       <div className="controls">
