@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ControlButton from "./ControlButton";
+import "./Timer.scss";
 
 const Timer = ({ workTime, breakTime }) => {
   const [minutes, setMinutes] = useState(workTime);
@@ -42,13 +43,11 @@ const Timer = ({ workTime, breakTime }) => {
 
   return (
     <div className="Timer">
-      <h1 id="status">{paused ? "paused" : work ? "work" : "break"}</h1>
-      <div id="countdown">
-        <p id="minutes">{minutes === 0 ? "00" : minutes}</p>
-        <p id="colon">:</p>
-        <p id="seconds">{seconds === 0 ? "00" : seconds}</p>
-      </div>
-      <div id="controls">
+      <h2 className="status">{paused ? "paused" : work ? "work" : "break"}</h2>
+      <h1 className="countdown">
+        {minutes === 0 ? "00" : minutes}:{seconds === 0 ? "00" : seconds}
+      </h1>
+      <div className="controls">
         <ControlButton
           text={paused ? "start" : "pause"}
           action={() => setPaused(!paused)}

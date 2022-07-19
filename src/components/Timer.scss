@@ -1,0 +1,40 @@
+@use "../variables";
+
+.Timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: variables.$cultured;
+  color: variables.$space-cadet;
+  height: 50%;
+  width: 40%;
+  border-radius: 35px;
+
+  .status {
+    font-size: 32px;
+    margin: 0;
+  }
+
+  .countdown {
+    font-weight: bolder;
+    font-size: 64px;
+    margin: 0;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0 -10px 0;
+  }
+
+  .ControlButton {
+    background-color: variables.$space-cadet;
+    color: variables.$cultured;
+    border-radius: 25%;
+    width: 10vh;
+    height: 10vh;
+  }
+}
