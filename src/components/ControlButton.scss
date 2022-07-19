@@ -1,0 +1,24 @@
+@use "../variables";
+
+.ControlButton {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10px;
+  background-color: variables.$green;
+  color: white;
+  border: 3px solid white;
+  box-shadow: variables.$shadow;
+  transition: all 0.075s ease;
+  margin: 0;
+  padding: 0;
+
+  &:hover {
+    filter: brightness(95%);
+  }
+
+  &:active {
+    width: calc(10vw - 3px);
+    height: calc(10vw - 3px);
+    padding: 3px;
+  }
+}

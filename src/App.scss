@@ -7,10 +7,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: variables.$space-cadet;
+  background-color: variables.$red;
   font-family: variables.$font-stack;
-
-  .title {
-    color: variables.$cultured;
-  }
 }

@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">React Timer</h1>
       <Timer workTime={workTime} breakTime={breakTime}></Timer>
     </div>
   );

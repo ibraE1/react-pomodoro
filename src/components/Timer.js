@@ -43,10 +43,10 @@ const Timer = ({ workTime, breakTime }) => {
 
   return (
     <div className="Timer">
-      <h2 className="status">{paused ? "paused" : work ? "work" : "break"}</h2>
       <h1 className="countdown">
         {minutes === 0 ? "00" : minutes}:{seconds === 0 ? "00" : seconds}
       </h1>
+      <h2 className="status">{paused ? "paused" : work ? "work" : "break"}</h2>
       <div className="controls">
         <ControlButton
           text={paused ? "start" : "pause"}
