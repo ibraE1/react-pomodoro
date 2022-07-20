@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Timer from "./components/Timer";
 import "./App.scss";
+import Options from "./components/Options";
 
 function App() {
   const [workTime, setWorkTime] = useState(25);
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">Pomodoro</h1>
-      <Timer workTime={workTime} breakTime={breakTime}></Timer>
+      <Options></Options>
     </div>
   );
 }

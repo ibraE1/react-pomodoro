@@ -1,15 +1,16 @@
 @use "../variables";
+@use "sass:math";
 
 .ControlButton {
-  width: 20vw;
-  height: 15vw;
+  width: min(20vw, 140px);
+  height: min(15vw, 100px);
   border-radius: 10px;
   background-color: white;
   color: black;
   border: 3px solid black;
   box-shadow: variables.$shadow;
   transition: all 0.1s ease;
-  font-size: 32px;
+  font-size: 24px;
 
   &:hover {
     box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.16), 0 5px 0 0 black;

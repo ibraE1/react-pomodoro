@@ -1,4 +1,5 @@
 import Stepper from "./Stepper";
+import "./Options.scss";
 
 const Options = () => {
   return (
