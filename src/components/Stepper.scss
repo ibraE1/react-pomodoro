@@ -12,7 +12,6 @@ input[type="number"] {
 }
 
 .Stepper {
-  height: 25%;
   width: min(70%, 350px);
   display: flex;
   flex-direction: column;
@@ -31,14 +30,33 @@ input[type="number"] {
 
   .controls {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    width: 10%;
+    width: 100%;
   }
 
   .operator {
-    background: none;
-    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    box-shadow: variables.$shadow;
+    transition: all 0.1s ease;
+    font-size: 16px;
+    text-align: center;
+    line-height: normal;
+
+    &:hover {
+      box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.16), 0 4px 0 0 black;
+      margin-top: -10px;
+    }
+
+    &:active {
+      margin-top: 0px;
+      box-shadow: variables.$shadow;
+    }
   }
 
   .counter {
