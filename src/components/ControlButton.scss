@@ -1,21 +1,26 @@
 @use "../variables";
 
 .ControlButton {
-  width: 10vw;
-  height: 10vw;
+  width: 20vw;
+  height: 15vw;
   border-radius: 10px;
   background-color: variables.$green;
   color: white;
   border: 3px solid white;
   box-shadow: variables.$shadow;
-  transition: all 0.075s ease;
+  transition: all 0.1s ease;
+  font-size: 32px;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 0 1px 0 black, 0 2px 0 black, 0 3px 0 black,
+    rgba(0, 0, 0, 0.16) 0px 5px 4px;
 
   &:hover {
-    filter: brightness(95%);
+    box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.16), 0 5px 0 0 white;
+    margin-top: -10px;
   }
 
   &:active {
-    margin-bottom: -4px;
-    box-shadow: none;
+    margin-top: 0px;
+    box-shadow: variables.$shadow;
   }
 }

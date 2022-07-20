@@ -5,8 +5,18 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: variables.$red;
   font-family: variables.$font-stack;
+
+  .title {
+    color: white;
+    font-weight: bolder;
+    font-size: 64px;
+    margin: 0;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 0 1px 0 black, 0 2px 0 black, 0 3px 0 black, 0 4px 0 black,
+      0 5px 0 black, 0 6px 0 black, rgba(0, 0, 0, 0.16) 0px 10px 4px;
+  }
 }
