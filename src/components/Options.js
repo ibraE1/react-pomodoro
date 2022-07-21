@@ -8,12 +8,19 @@ const Options = ({
   setWorkTime,
   breakTime,
   setBreakTime,
+  longBreakTime,
+  setLongBreakTime,
   setTimerVisibility,
 }) => {
   return (
     <div className="Options">
       <Stepper name="work" value={workTime} setValue={setWorkTime}></Stepper>
       <Stepper name="break" value={breakTime} setValue={setBreakTime}></Stepper>
+      <Stepper
+        name="long break"
+        value={longBreakTime}
+        setValue={setLongBreakTime}
+      ></Stepper>
       <div className="container">
         <button
           className="continue"

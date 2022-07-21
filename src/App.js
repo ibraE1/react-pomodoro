@@ -6,13 +6,14 @@ import Options from "./components/Options";
 function App() {
   const [workTime, setWorkTime] = useState(25);
   const [breakTime, setBreakTime] = useState(5);
+  const [longBreakTime, setLongBreakTime] = useState(10);
   const [timerVisibility, setTimerVisibility] = useState(false);
 
   return (
     <div className="App">
       <h1 className="title">Pomodoro</h1>
       {timerVisibility ? (
-        <Timer {...{ workTime, breakTime }} />
+        <Timer {...{ workTime, breakTime, longBreakTime }} />
       ) : (
         <Options
           {...{
@@ -20,6 +21,8 @@ function App() {
             setWorkTime,
             breakTime,
             setBreakTime,
+            longBreakTime,
+            setLongBreakTime,
             setTimerVisibility,
           }}
         ></Options>

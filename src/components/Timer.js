@@ -3,11 +3,12 @@ import ControlButton from "./ControlButton";
 import "./Timer.scss";
 import sound from "../assets/alert.wav";
 
-const Timer = ({ workTime, breakTime }) => {
+const Timer = ({ workTime, breakTime, longBreakTime }) => {
   const [minutes, setMinutes] = useState(workTime);
   const [seconds, setSeconds] = useState(0);
-  const [work, setWork] = useState(true);
+  const [session, setSession] = useState("work");
   const [paused, setPaused] = useState(true);
+  const [sessionCounter, setSessionCounter] = useState(1);
   const notificationPlayer = useRef(null);
 
   useEffect(() => {
@@ -18,18 +19,26 @@ const Timer = ({ workTime, breakTime }) => {
             setSeconds(59);
             setMinutes(minutes - 1);
           } else {
-            if (work) {
-              setMinutes(breakTime);
+            if (session === "work") {
+              if (sessionCounter === 4) {
+                setSessionCounter(1);
+                setMinutes(longBreakTime);
+                setSession("long break");
+              } else {
+                setSessionCounter(sessionCounter + 1);
+                setMinutes(breakTime);
+                setSession("break");
+              }
             } else {
               setMinutes(workTime);
+              setSession("work");
             }
             notificationPlayer.current.play();
-            setWork(!work);
           }
         } else {
           setSeconds(seconds - 1);
         }
-      }, 1000);
+      }, 10);
 
       document.title =
         (minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes) +
@@ -41,7 +50,6 @@ const Timer = ({ workTime, breakTime }) => {
       document.title = "Pomodoro Paused";
     }
   }, [
-    work,
     minutes,
     paused,
     seconds,
@@ -49,6 +57,9 @@ const Timer = ({ workTime, breakTime }) => {
     setSeconds,
     breakTime,
     workTime,
+    sessionCounter,
+    longBreakTime,
+    session,
   ]);
 
   return (
@@ -57,7 +68,8 @@ const Timer = ({ workTime, breakTime }) => {
         {minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:
         {seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds}
       </h1>
-      <h2 className="status">{paused ? "paused" : work ? "work" : "break"}</h2>
+      <h2 className="status">{sessionCounter}/4</h2>
+      <h2 className="status">{paused ? "paused" : session}</h2>
       <div className="controls">
         <ControlButton
           text={paused ? "start" : "pause"}
@@ -66,7 +78,7 @@ const Timer = ({ workTime, breakTime }) => {
         <ControlButton
           text="reset"
           action={() => {
-            setWork(true);
+            setSession("work");
             setPaused(true);
             setMinutes(workTime);
             setSeconds(0);
