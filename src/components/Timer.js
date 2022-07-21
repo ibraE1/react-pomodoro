@@ -38,7 +38,7 @@ const Timer = ({ workTime, breakTime, longBreakTime }) => {
         } else {
           setSeconds(seconds - 1);
         }
-      }, 10);
+      }, 1000);
 
       document.title =
         (minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes) +
