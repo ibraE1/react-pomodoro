@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ControlButton from "./ControlButton";
 import "./Timer.scss";
+import sound from "../assets/alert.wav";
 
 const Timer = ({ workTime, breakTime }) => {
   const [minutes, setMinutes] = useState(workTime);
   const [seconds, setSeconds] = useState(0);
   const [work, setWork] = useState(true);
   const [paused, setPaused] = useState(true);
+  const notificationPlayer = useRef(null);
 
   useEffect(() => {
     if (!paused) {
@@ -21,6 +23,7 @@ const Timer = ({ workTime, breakTime }) => {
             } else {
               setMinutes(workTime);
             }
+            notificationPlayer.current.play();
             setWork(!work);
           }
         } else {
@@ -28,7 +31,14 @@ const Timer = ({ workTime, breakTime }) => {
         }
       }, 1000);
 
+      document.title =
+        (minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes) +
+        ":" +
+        (seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds);
+
       return () => clearInterval(interval);
+    } else {
+      document.title = "Pomodoro Paused";
     }
   }, [
     work,
@@ -60,9 +70,11 @@ const Timer = ({ workTime, breakTime }) => {
             setPaused(true);
             setMinutes(workTime);
             setSeconds(0);
+            document.title = "Pomodoro";
           }}
         ></ControlButton>
       </div>
+      <audio ref={notificationPlayer} src={sound}></audio>
     </div>
   );
 };
