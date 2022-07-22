@@ -1,0 +1,23 @@
+@use "_variables";
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./assets/tomato.svg);
+  background-size: 3rem;
+  background-repeat: repeat;
+  background-color: variables.$primary-color;
+
+  .title {
+    font-family: variables.$font-stack;
+    font-size: 5rem;
+    font-weight: bolder;
+    color: white;
+    -webkit-text-stroke: 3px black;
+    text-shadow: 0 6px black;
+  }
+}

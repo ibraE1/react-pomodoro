@@ -1,7 +1,7 @@
-import Stepper from "./Stepper";
-import "./Options.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Options.module.scss";
+import NumberInput from "./NumberInput";
 
 const Options = ({
   workTime,
@@ -13,24 +13,28 @@ const Options = ({
   setTimerVisibility,
 }) => {
   return (
-    <div className="Options">
-      <Stepper name="work" value={workTime} setValue={setWorkTime}></Stepper>
-      <Stepper name="break" value={breakTime} setValue={setBreakTime}></Stepper>
-      <Stepper
+    <div className={styles.container}>
+      <NumberInput
+        name="work"
+        value={workTime}
+        setValue={setWorkTime}
+      ></NumberInput>
+      <NumberInput
+        name="break"
+        value={breakTime}
+        setValue={setBreakTime}
+      ></NumberInput>
+      <NumberInput
         name="long break"
         value={longBreakTime}
         setValue={setLongBreakTime}
-      ></Stepper>
-      <div className="container">
-        <button
-          className="continue"
-          onClick={() => {
-            setTimerVisibility(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
-        </button>
-      </div>
+      ></NumberInput>
+      <button
+        className={styles.continue}
+        onClick={() => setTimerVisibility(true)}
+      >
+        <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+      </button>
     </div>
   );
 };

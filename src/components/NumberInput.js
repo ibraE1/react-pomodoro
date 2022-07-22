@@ -1,30 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import "./Stepper.scss";
+import styles from "./NumberInput.module.scss";
 
-const Stepper = ({ name, value, setValue }) => {
+const NumberInput = ({ name, value, setValue }) => {
   return (
-    <div className="Stepper">
-      <h1 className="name">{name}</h1>
-      <div className="controls">
-        <button
-          className="operator"
-          onClick={() => value > 1 && setValue(value - 1)}
-        >
+    <div className={styles.container}>
+      <h1>{name}</h1>
+      <div className={styles.controls}>
+        <button onClick={() => value > 1 && setValue(value - 1)}>
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
         <input
-          className="counter"
           type="number"
           value={value}
           onChange={(e) =>
             setValue(Math.min(Math.max(parseInt(e.target.value), 1), 60))
           }
         />
-        <button
-          className="operator"
-          onClick={() => value < 60 && setValue(value + 1)}
-        >
+        <button onClick={() => value < 60 && setValue(value + 1)}>
           <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
         </button>
       </div>
@@ -32,4 +25,4 @@ const Stepper = ({ name, value, setValue }) => {
   );
 };
 
-export default Stepper;
+export default NumberInput;

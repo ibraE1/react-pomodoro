@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import ControlButton from "./ControlButton";
-import "./Timer.scss";
 import sound from "../assets/alert.wav";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faArrowRotateRight,
+} from "@fortawesome/free-solid-svg-icons";
+import styles from "./Timer.module.scss";
 
 const Timer = ({ workTime, breakTime, longBreakTime }) => {
   const [minutes, setMinutes] = useState(workTime);
@@ -63,28 +68,28 @@ const Timer = ({ workTime, breakTime, longBreakTime }) => {
   ]);
 
   return (
-    <div className="Timer">
-      <h1 className="countdown">
+    <div className={styles.container}>
+      <h1>
         {minutes === 0 ? "00" : minutes < 10 ? "0" + minutes : minutes}:
         {seconds === 0 ? "00" : seconds < 10 ? "0" + seconds : seconds}
       </h1>
-      <h2 className="status">{sessionCounter}/4</h2>
-      <h2 className="status">{paused ? "paused" : session}</h2>
-      <div className="controls">
-        <ControlButton
-          text={paused ? "start" : "pause"}
-          action={() => setPaused(!paused)}
-        ></ControlButton>
-        <ControlButton
-          text="reset"
-          action={() => {
+      <h2>{sessionCounter}/4</h2>
+      <h2>{paused ? "paused" : session}</h2>
+      <div className={styles.controls}>
+        <button onClick={() => setPaused(!paused)}>
+          <FontAwesomeIcon icon={paused ? faPlay : faPause}></FontAwesomeIcon>
+        </button>
+        <button
+          onClick={() => {
             setSession("work");
             setPaused(true);
             setMinutes(workTime);
             setSeconds(0);
             document.title = "Pomodoro";
           }}
-        ></ControlButton>
+        >
+          <FontAwesomeIcon icon={faArrowRotateRight}></FontAwesomeIcon>
+        </button>
       </div>
       <audio ref={notificationPlayer} src={sound}></audio>
     </div>
