@@ -14,10 +14,11 @@
 
   .title {
     font-family: variables.$font-stack;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: bolder;
     color: white;
     -webkit-text-stroke: 3px black;
     text-shadow: 0 6px black;
+    margin: 0.25em 0;
   }
 }
